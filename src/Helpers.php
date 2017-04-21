@@ -7,47 +7,47 @@ use Industrious\WpHelpers\Fetchers\Other\CustomFieldFetcher;
 use Industrious\WpHelpers\Fetchers\Other\CustomSubFieldFetcher;
 
 /**
- * @param string $field
- * @param string $post_id
- *
- * @return mixed
- */
+* @param string $field
+* @param string $post_id
+*
+* @return mixed
+*/
 function custom_field($field = '', $post_id = '')
 {
     return (new CustomFieldFetcher)->fetchOne($field, $post_id);
 }
 
 /**
- * @param string $field
- * @param string $post_id
- *
- * @return mixed
- */
+* @param string $field
+* @param string $post_id
+*
+* @return mixed
+*/
 function custom_sub_field($field = '', $post_id = '')
 {
     return (new CustomSubFieldFetcher)->fetchOne($field, $post_id);
 }
 
 /**
- * @param string $field
- * @param string $page
- *
- * @return mixed
- */
+* @param string $field
+* @param string $page
+*
+* @return mixed
+*/
 function site_option($field = '', $page = 'options')
 {
     return (new SiteOptionFetcher)->fetchOne($field, $page);
 }
 
 /**
- * @param string $field
- * @param string $size
- * @param string $fetcher_type
- * @param bool   $use_fallback
- * @param null   $post_id
- *
- * @return bool
- */
+* @param string $field
+* @param string $size
+* @param string $fetcher_type
+* @param bool   $use_fallback
+* @param null   $post_id
+*
+* @return bool
+*/
 function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback = true, $post_id = null)
 {
     if (is_int($field))
@@ -61,8 +61,8 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
     else
     {
         $image_id = $fetcher_type == 'sub'
-        ? custom_sub_field($field, $post_id)
-        : custom_field($field, $post_id);
+            ? custom_sub_field($field, $post_id)
+            : custom_field($field, $post_id);
 
         if(is_array($image_id))
         {
@@ -73,26 +73,26 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
     //  Fallback Image
     if (!$image_id && $use_fallback)
     {
-      return \get_site_icon_url();
-  }
+        return \get_site_icon_url();
+    }
 
-  $image = \wp_get_attachment_image_src($image_id, $size);
+    $image = \wp_get_attachment_image_src($image_id, $size);
 
-  return $image
-  ? $image[0]
-  : false;
+    return $image
+    ? $image[0]
+    : false;
 }
 
 /**
- * @param $tax
- *
- * @return string
- */
+* @param $tax
+*
+* @return string
+*/
 function get_acf_term_field($tax = null)
 {
-  $tax = isset($tax)
-  ? $tax
-  : \get_queried_object();
+    $tax = isset($tax)
+        ? $tax
+        : \get_queried_object();
 
-  return implode('_', [$tax->taxonomy, $tax->term_id]);
+    return implode('_', [$tax->taxonomy, $tax->term_id]);
 }
