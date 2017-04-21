@@ -27,7 +27,10 @@
     "autoload": {
         "psr-4": {
             "Industrious\\WpHelpers\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
