@@ -12,12 +12,9 @@ use Industrious\WpHelpers\Fetchers\Other\CustomSubFieldFetcher;
  *
  * @return mixed
  */
-if (!function_exists('custom_field'))
+function custom_field($field = '', $post_id = '')
 {
-    function custom_field($field = '', $post_id = '')
-    {
-        return (new CustomFieldFetcher)->fetchOne($field, $post_id);
-    }
+    return (new CustomFieldFetcher)->fetchOne($field, $post_id);
 }
 
 /**
