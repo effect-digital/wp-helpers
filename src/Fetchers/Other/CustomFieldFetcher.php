@@ -1,11 +1,12 @@
 <?php
 namespace Industrious\WpHelpers\Fetchers\Other;
 
+use Industrious\WpHelpers\Fetchers\TransientFetcher;
+
 /**
  * Class CustomFieldFetcher
- * @package Fetchers\Other
  */
-class CustomFieldFetcher extends \Fetchers\TransientFetcher
+class CustomFieldFetcher extends TransientFetcher
 {
     /**
      * Cache/Transient Expiry Length

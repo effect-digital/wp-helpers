@@ -3,7 +3,6 @@ namespace Industrious\WpHelpers\Fetchers\Other;
 
 /**
  * Class CustomFieldFetcher
- * @package EIS\Other
  */
 class CustomSubFieldFetcher extends CustomFieldFetcher
 {

@@ -1,11 +1,13 @@
 <?php
 namespace Industrious\WpHelpers\Fetchers\Taxonomy;
 
+use Industrious\WpHelpers\Fetchers\TransientTaxonomyFetcher;
+
+
 /**
  * Class TaxFetcher
- * @package Fetchers\Taxonomy
  */
-class TaxFetcher extends \Fetchers\TransientTaxonomyFetcher
+class TaxFetcher extends TransientTaxonomyFetcher
 {
     /**
      * @var string

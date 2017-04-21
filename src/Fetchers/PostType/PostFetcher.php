@@ -1,11 +1,12 @@
 <?php
 namespace Industrious\WpHelpers\Fetchers\PostType;
 
+use Industrious\WpHelpers\Fetchers\TransientPostFetcher;
+
 /**
  * Class PostFetcher
- * @package Fetchers\PostType
  */
-class PostFetcher extends \Fetchers\TransientPostFetcher
+class PostFetcher extends TransientPostFetcher
 {
     /**
      * @var string

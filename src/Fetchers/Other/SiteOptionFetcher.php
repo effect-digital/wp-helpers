@@ -3,7 +3,6 @@ namespace Industrious\WpHelpers\Fetchers\Other;
 
 /**
  * Class SiteOptionFetcher
- * @package Fetchers\Other
  */
 class SiteOptionFetcher extends CustomFieldFetcher
 {

@@ -2,12 +2,12 @@
 namespace Industrious\WpHelpers\Fetchers\Other;
 
 use TwitterAPIExchange;
+use Industrious\WpHelpers\Fetchers\TransientFetcher;
 
 /**
  * Class TweetFetcher
- * @package EIS\Other
  */
-class TweetFetcher extends \Fetchers\TransientFetcher
+class TweetFetcher extends TransientFetcher
 {
     /**
      * @var TwitterAPIExchange
