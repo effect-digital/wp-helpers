@@ -73,7 +73,7 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
     //  Fallback Image
     if (!$image_id && $use_fallback)
     {
-        return \get_site_icon_url();
+        $image_id = get_option('site_icon');
     }
 
     $image = \wp_get_attachment_image_src($image_id, $size);
