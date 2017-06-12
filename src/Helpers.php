@@ -64,23 +64,23 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
             ? custom_sub_field($field, $post_id)
             : custom_field($field, $post_id);
 
-        if(is_array($image_id))
+        if (is_array($image_id))
         {
             $image_id = $image_id['id'];
         }
     }
 
-    //  Fallback Image
-    if (!$image_id && $use_fallback)
-    {
-        $image_id = get_option('site_icon');
-    }
-
     $image = \wp_get_attachment_image_src($image_id, $size);
 
+    //  Fallback Image
+    if (!$image && $use_fallback)
+    {
+        $image = \wp_get_attachment_image_src(get_option('site_icon'), $size);
+    }
+
     return $image
-    ? $image[0]
-    : false;
+        ? $image[0]
+        : false;
 }
 
 /**
