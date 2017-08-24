@@ -45,17 +45,18 @@ class CustomFieldFetcher extends TransientFetcher
 
     /**
      * @param      $field
-     * @param null $page
+     * @param      $page
+     * @param      $format_value
      *
      * @return bool|mixed|null|void
      * @throws \Exception
      */
-    public function execute($field, $page = null)
+    public function execute($field, $page = null, $format_value = true)
     {
         $query = $this->getTransient($this->getTransientKey());
 
         if ($query === false) {
-            $query = get_field($field, $page);
+            $query = get_field($field, $page, $format_value);
 
             $this->setTransient($query);
         }
