@@ -27,7 +27,7 @@ class CustomFieldFetcher extends TransientFetcher
      * @return bool|mixed|null|void
      * @throws \Exception
      */
-    public function fetchOne($field = '', $post_id = 0)
+    public function fetchOne($field = '', $post_id = 0, $format_value = true)
     {
         if (!$post_id) {
             $post_id = get_the_ID();
@@ -40,7 +40,7 @@ class CustomFieldFetcher extends TransientFetcher
 
         $this->transient_key = $this->getTransientKey() . '_' . md5(json_encode($args));
 
-        return $this->execute($field, $post_id);
+        return $this->execute($field, $post_id, $format_value);
     }
 
     /**

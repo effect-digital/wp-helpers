@@ -12,9 +12,9 @@ use Industrious\WpHelpers\Fetchers\Other\CustomSubFieldFetcher;
 *
 * @return mixed
 */
-function custom_field($field = '', $post_id = '')
+function custom_field($field = '', $post_id = '', $format_value = true)
 {
-    return (new CustomFieldFetcher)->fetchOne($field, $post_id);
+    return (new CustomFieldFetcher)->fetchOne($field, $post_id, $format_value);
 }
 
 /**
@@ -23,9 +23,9 @@ function custom_field($field = '', $post_id = '')
 *
 * @return mixed
 */
-function custom_sub_field($field = '', $post_id = '')
+function custom_sub_field($field = '', $post_id = '', $format_value = true)
 {
-    return (new CustomSubFieldFetcher)->fetchOne($field, $post_id);
+    return (new CustomSubFieldFetcher)->fetchOne($field, $post_id, $format_value);
 }
 
 /**
