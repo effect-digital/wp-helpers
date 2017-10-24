@@ -149,6 +149,7 @@ class InstagramFetcher extends TransientFetcher
             return (object) [
                 'created_at'    => $post->created_time,
                 'relative_time' => $this->relative_time($post->created_time),
+                'link'          => $post->link,
                 'image'         => $post->images->standard_resolution->url,
                 'content'       => $post->caption->text
             ];
