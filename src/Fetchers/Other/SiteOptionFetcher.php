@@ -43,7 +43,7 @@ class SiteOptionFetcher extends CustomFieldFetcher
      * @return bool|mixed|null|void
      * @throws \Exception
      */
-    public function fetchOne($field = '', $page = 'option')
+    public function fetchOne($field = '', $page = 'option', $format_value = true)
     {
         return parent::fetchOne($field, $page);
     }
