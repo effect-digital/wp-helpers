@@ -62,7 +62,7 @@ class GeocodingFetcher extends TransientFetcher
      */
     public function fetchOne(string $address)
     {
-        return $this->fetchAll([$address]);
+        return $this->fetchAll([$address])[0];
     }
 
     /**
