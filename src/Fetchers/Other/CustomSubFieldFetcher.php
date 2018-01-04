@@ -19,7 +19,7 @@ class CustomSubFieldFetcher extends CustomFieldFetcher
      * @return bool|mixed|null|void
      * @throws \Exception
      */
-    public function execute($field, $page = null)
+    public function execute($field, $page = null, $format_value = true)
     {
         $query = $this->getTransient($this->getTransientKey());
 
