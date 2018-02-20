@@ -152,7 +152,7 @@ class TweetFetcher extends TransientFetcher
         }
         catch (\Exception $e)
         {
-        	return $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -166,9 +166,10 @@ class TweetFetcher extends TransientFetcher
         return array_map(function($tweet)
         {
             return (object) [
-                'created_at'    => $tweet->created_at,
+                'id' => $tweet->id,
+                'created_at' => $tweet->created_at,
                 'relative_time' => $this->relative_time($tweet->created_at),
-                'content'       => $this->twitterify($tweet->text)
+                'content' => $this->twitterify($tweet->text)
             ];
         }, $tweets);
     }
