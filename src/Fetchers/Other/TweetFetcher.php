@@ -134,7 +134,7 @@ class TweetFetcher extends TransientFetcher
             }
 
             //  See if we've got a transient available
-            if ($query = $this->getTransient($this->getTransientKey())) {
+            if ($query = $this->getTransient($this->getTransientKey($args))) {
                 return $query;
             }
 
@@ -235,5 +235,17 @@ class TweetFetcher extends TransientFetcher
     protected function getTransientHookName()
     {
         // TODO: Implement getTransientHookName() method.
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getTransientKey(array $args = [])
+    {
+        return implode('_', [
+            $this->transient_key,
+            json_encode($args)
+        ]);
     }
 }
