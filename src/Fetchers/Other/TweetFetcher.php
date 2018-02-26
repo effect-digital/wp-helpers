@@ -118,26 +118,29 @@ class TweetFetcher extends TransientFetcher
      */
     private function execute($method = 'GET', $url = '', $args = [])
     {
+        $curl_options = [
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+        ];
+
         try
         {
-            if($method == 'POST')
-            {
+            if ($method == 'POST') {
                 return $this->client
                     ->buildOauth($url, 'POST')
                     ->setPostfields($args)
-                    ->performRequest();
+                    ->performRequest(true, $curl_options);
             }
 
             //  See if we've got a transient available
-            if($query = $this->getTransient($this->getTransientKey()))
-            {
+            if ($query = $this->getTransient($this->getTransientKey())) {
                 return $query;
             }
 
             $request = $this->client
                 ->setGetfield('?' . http_build_query($args))
                 ->buildOauth($url, 'GET')
-                ->performRequest();
+                ->performRequest(true, $curl_options);
 
             $response = json_decode($request);
 
