@@ -170,7 +170,7 @@ class TweetFetcher extends TransientFetcher
         return array_map(function($tweet)
         {
             return (object) [
-                'id' => $tweet->id,
+                'id' => $tweet->id_str,
                 'created_at' => $tweet->created_at,
                 'relative_time' => $this->relative_time($tweet->created_at),
                 'content' => $this->twitterify($tweet->full_text)
