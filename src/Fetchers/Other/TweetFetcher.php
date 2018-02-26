@@ -80,9 +80,10 @@ class TweetFetcher extends TransientFetcher
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 
         $args = array_merge([
-            'count'             => 2,
-            'exclude_replies'   => TRUE,
-            'include_rts'       => TRUE
+            'count' => 2,
+            'exclude_replies' => TRUE,
+            'include_rts' => TRUE,
+            'tweet_mode' => 'extended'
         ], $args);
 
         $response = $this->execute('GET', $url, $args);
@@ -172,7 +173,7 @@ class TweetFetcher extends TransientFetcher
                 'id' => $tweet->id,
                 'created_at' => $tweet->created_at,
                 'relative_time' => $this->relative_time($tweet->created_at),
-                'content' => $this->twitterify($tweet->text)
+                'content' => $this->twitterify($tweet->full_text)
             ];
         }, $tweets);
     }
@@ -184,9 +185,10 @@ class TweetFetcher extends TransientFetcher
      */
     private function twitterify($content = '')
     {
+        $content = preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $content);
         $content = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\" target=\"_blank\">\\2</a>", $content);
         $content = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2</a>", $content);
-        $content = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" target=\"_blank\">@\\1</a>", $content);
+        $content = preg_replace("/^@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" target=\"_blank\">@\\1</a>", $content);
         $content = preg_replace("/#(\w+)/", "<a href=\"http://twitter.com/search?q=\\1\" target=\"_blank\">#\\1</a>", $content);
 
         return $content;
