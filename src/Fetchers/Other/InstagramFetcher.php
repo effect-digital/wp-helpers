@@ -84,8 +84,8 @@ class InstagramFetcher extends TransientFetcher
             'count' => 2
         ], $args);
 
-
-        $response = $this->execute($url, $args);
+        $this->transient_key = 'instagram_fetcher__' . http_build_query($args);
+        $response = $this->getTransient($this->transient_key) ?: $this->execute($url, $args);
 
         $data = json_decode($response);
 
@@ -120,16 +120,24 @@ class InstagramFetcher extends TransientFetcher
     {
         try
         {
-            $request = @file_get_contents($url . '?' . http_build_query($args));
+            $request = curl_init();
 
-            if (!$request)
+            curl_setopt($request, CURLOPT_URL, $url . '?' . http_build_query($args));
+            curl_setopt($request, CURLOPT_CONNECTTIMEOUT, 5);
+            curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
+
+            $response = curl_exec($request);
+            curl_close($request);
+
+            if (!$response)
             {
                 throw new \Exception('An error occurred in ' . __METHOD__);
             }
 
-            $this->setTransient($request);
+            $this->setTransient($response);
 
-            return $request;
+            return $response;
         }
         catch (\Exception $e)
         {
