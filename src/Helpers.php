@@ -75,7 +75,9 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
     //  Fallback Image
     if (!$image && $use_fallback)
     {
-        $image = \wp_get_attachment_image_src(get_option('site_icon'), $size);
+        $fallback = apply_filters('image-fallback', get_option('site_icon'));
+
+        $image = \wp_get_attachment_image_src($fallback, $size);
     }
 
     return $image
