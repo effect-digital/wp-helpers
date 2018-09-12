@@ -1,8 +1,6 @@
 <?php
 namespace Industrious\WpHelpers\Validation;
 
-require dirname(__FILE__) . '/../../vendor/autoload.php';
-
 use Illuminate\Validation;
 use Illuminate\Translation;
 use Illuminate\Filesystem\Filesystem;
