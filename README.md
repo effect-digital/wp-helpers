@@ -18,3 +18,37 @@ industrious/wp-helpers is open-sourced software licensed under the [MIT license]
 To get started with industrious/wp-helpers, use Composer to add the package to your project's dependencies:
 
     composer require industrious-mouse/wp-helpers
+
+# Examples
+
+## Validation Helpers
+
+Below is an example of how you might be able to use the ValidatesRequests trait, to validate a form.
+
+    use ValidatesRequests;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $data = [
+            'abc' => '123',
+            'def' => '123',
+        ];
+
+        $rules = [
+            'abc' => 'required',
+            'def' => 'required',
+        ];
+
+        $errors = $this->validate($data, $rules);
+
+        if (! $errors) {
+            wp_send_json_success();
+        }
+
+        wp_send_json_error([
+            'errors' => $errors->toArray()
+        ]);
+    }

@@ -19,7 +19,10 @@
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.3",
-        "j7mbo/twitter-api-php": "^1.0"
+        "j7mbo/twitter-api-php": "^1.0",
+        "illuminate/filesystem": "^5.7",
+        "illuminate/translation": "^5.7",
+        "illuminate/validation": "^5.7"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
