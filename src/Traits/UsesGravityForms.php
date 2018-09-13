@@ -2,7 +2,7 @@
 
 namespace Industrious\WpHelpers\Traits;
 
-use RGFormsModel, GFCommon;
+use RGFormsModel, GFCommon, GFAPI;
 
 trait UsesGravityForms
 {
