@@ -24,7 +24,7 @@ trait UsesGravityForms
      * @param  int    $entry_id
      * @return null
      */
-    protected function send_gf_notifications(int $form_id, int $entry_id)
+    protected function sendGravityFormsNotifications(int $form_id, int $entry_id)
     {
         // Get the array info for our forms and entries
         // that we need to send notifications for
