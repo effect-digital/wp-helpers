@@ -23,11 +23,22 @@ class PostFetcher extends TransientPostFetcher
      *
      * @return $this
      */
+    /**
+     * @param string $post_type
+     *
+     * @return $this
+     */
     public function setPostType($post_type = '')
     {
         $this->custom_post_type = $post_type;
 
-        $this->transient_key = str_replace('post_', json_encode($post_type) . '_', $this->transient_key);
+        $key = implode('-', (array) $post_type);
+
+        $this->transient_key = str_replace(
+            'post_',
+            $key . '_',
+            $this->transient_key
+        );
 
         return $this;
     }
