@@ -43,7 +43,9 @@ class InstagramFetcher extends TransientFetcher
      */
     public function __construct()
     {
-        $this->access_token = getenv('INSTAGRAM_ACCESS_TOKEN');
+        if ($access_token = getenv('INSTAGRAM_ACCESS_TOKEN')) {
+            $this->setAccessToken($access_token);
+        }
 
         parent::__construct();
     }
@@ -84,7 +86,7 @@ class InstagramFetcher extends TransientFetcher
             'count' => 2
         ], $args);
 
-        $this->transient_key = 'instagram_fetcher__' . http_build_query($args);
+        $this->transient_key = 'instagram_fetcher_' . sha1($this->access_token) . '_' . http_build_query($args);
         $response = $this->getTransient($this->transient_key) ?: $this->execute($url, $args);
 
         $data = json_decode($response);
@@ -104,6 +106,17 @@ class InstagramFetcher extends TransientFetcher
             ],
             'posts'        => $this->presentPosts($data->data)
         ];
+    }
+
+    /**
+     * @param string $access_token
+     * @return InstagramFetcher
+     */
+    public function setAccessToken(string $access_token): InstagramFetcher
+    {
+        $this->access_token = $access_token;
+
+        return $this;
     }
 
     /**
