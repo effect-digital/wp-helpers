@@ -61,6 +61,10 @@ abstract class TransientTaxonomyFetcher extends TransientFetcher
         if ($query === false) {
             $query = get_terms($this->taxonomy, $args);
 
+            if ($query instanceof \WP_Error) {
+                return $query;
+            }
+
             if ($this->fetch_posts) {
                 foreach ($query as $term) {
                     $term->posts = [];
