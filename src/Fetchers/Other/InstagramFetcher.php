@@ -91,8 +91,7 @@ class InstagramFetcher extends TransientFetcher
 
         $data = json_decode($response);
 
-        if (!$data || !$data->data)
-        {
+        if (! $data || ! isset($data->data) || ! $data->data) {
             return [
                 'error'    => $response
             ];
