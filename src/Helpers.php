@@ -70,7 +70,7 @@ function fetch_image($field = '', $size = '', $fetcher_type = '', $use_fallback 
         }
     }
 
-    $image = \wp_get_attachment_image_src($image_id, $size);
+    $image = $image_id ? \wp_get_attachment_image_src($image_id, $size) : null;
 
     //  Fallback Image
     if (!$image && $use_fallback)
