@@ -4,7 +4,6 @@ namespace Industrious\WpHelpers;
 class Encryption
 {
     const CIPHER = 'AES-128-CBC';
-    const OPENSSL_OPTIONS = 0;
 
     /**
      * @var string
@@ -32,14 +31,12 @@ class Encryption
      */
     public function encrypt(string $string): ?string
     {
-        return base64_encode(
-            openssl_encrypt(
-                $string,
-                self::CIPHER,
-                $this->getKey(),
-                self::OPENSSL_OPTIONS,
-                $this->getInitializationVector()
-            )
+        return openssl_encrypt(
+            $string,
+            self::CIPHER,
+            $this->getKey(),
+            null,
+            $this->getInitializationVector()
         );
     }
 
@@ -50,10 +47,10 @@ class Encryption
     public function decrypt($data): ?string
     {
         return openssl_decrypt(
-            base64_decode($data),
+            $data,
             self::CIPHER,
             $this->getKey(),
-            self::OPENSSL_OPTIONS,
+            null,
             $this->getInitializationVector()
         );
     }
