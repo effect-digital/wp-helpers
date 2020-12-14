@@ -18,12 +18,13 @@
     },
     "require": {
         "php": ">=7.1",
+        "ext-openssl": "*",
         "guzzlehttp/guzzle": "^6.3",
-        "j7mbo/twitter-api-php": "^1.0",
+        "hashids/hashids": "^4.1",
         "illuminate/filesystem": "5.7.*",
         "illuminate/translation": "5.7.*",
         "illuminate/validation": "5.7.*",
-        "ext-openssl": "*"
+        "j7mbo/twitter-api-php": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
