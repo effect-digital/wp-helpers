@@ -17,12 +17,13 @@
         "issues": "https://github.com/industrious-mouse/wp-helpers/issues"
     },
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.1",
         "guzzlehttp/guzzle": "^6.3",
         "j7mbo/twitter-api-php": "^1.0",
         "illuminate/filesystem": "5.7.*",
         "illuminate/translation": "5.7.*",
-        "illuminate/validation": "5.7.*"
+        "illuminate/validation": "5.7.*",
+        "ext-openssl": "*"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",
