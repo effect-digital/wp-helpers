@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.1",
         "ext-openssl": "*",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.3|^7",
         "hashids/hashids": "^4.1",
         "illuminate/filesystem": "5.7.*",
         "illuminate/translation": "5.7.*",
